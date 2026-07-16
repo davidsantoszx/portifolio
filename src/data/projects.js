@@ -6,11 +6,11 @@
       tech: ["Flask", "React", "SQLAlchemy", "Tailwind CSS"],
       description: "Desenvolvido com foco em organização financeira pessoal. Permite criar planos salariais customizados com controle preciso de despesas, receitas e gráficos visuais claros.",
       
-      images:[
-      "/images/projects/salario/1.JPG",
-      "/images/projects/salario/2.JPG",
-      "/images/projects/salario/3.JPG",
-      "/images/projects/salario/4.JPG"
+    images: [
+    `${import.meta.env.BASE_URL}images/projects/salario/1.JPG`,
+    `${import.meta.env.BASE_URL}images/projects/salario/2.JPG`,
+    `${import.meta.env.BASE_URL}images/projects/salario/3.JPG`,
+    `${import.meta.env.BASE_URL}images/projects/salario/4.JPG`,
       ]
       
     
@@ -23,11 +23,11 @@
       tech: ["PowerShell", "Active Directory", "Automations"],
       description: "Script profissional desenvolvido em PowerShell para automatizar tarefas recorrentes do suporte de TI e administração em ambientes corporativos Windows Server/Client.",
     
-      images:[
-      "/images/projects/suporte/1.png",
-      "/images/projects/suporte/2.png",
-      "/images/projects/suporte/3.png",
-      "/images/projects/suporte/4.png"
+    images: [
+    `${import.meta.env.BASE_URL}images/projects/suporte/1.png`,
+    `${import.meta.env.BASE_URL}images/projects/suporte/2.png`,
+    `${import.meta.env.BASE_URL}images/projects/suporte/3.png`,
+    `${import.meta.env.BASE_URL}images/projects/suporte/4.png`,
       ]
     },
 

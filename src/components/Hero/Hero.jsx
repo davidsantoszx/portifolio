@@ -7,8 +7,8 @@ export default function Hero({
 
 
 
-      <section id="about" className="max-w-4xl mx-auto px-6 pt-32 pb-24 md:py-40 flex flex-col gap-8 fade-in-section">
-        <div className="space-y-6">
+      <section id="about" className=" min-h-screen max-w-4xl mx-auto px-6 pt-32 pb-24 md:py-40 flex flex-col gap-8 fade-in-section">
+        <div className="space-y-6 max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
           <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-neutral-500/10 text-xs tracking-wider uppercase font-mono bg-[#556B2F]/5">
             <span className="w-2 h-2 rounded-full bg-[#888888] animate-pulse"></span>
             <span>Disponível para projetos corporativos</span>

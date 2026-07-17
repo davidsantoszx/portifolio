@@ -10,10 +10,12 @@ export default function Skills({ isDarkMode }) {
 
       <div
         className={`h-1.5 w-full rounded-full ${
-          isDarkMode ? "bg-neutral-800" : "bg-neutral-200 " }`}
+          isDarkMode
+  ? "bg-[color:var(--color-surface)]"
+  : "bg-neutral-200"}`}
       >
         <div
-          className="h-full bg-[#556B2F] rounded-full"
+          className="h-full bg-[color:var(--color-primary)] rounded-full"
           style={{ width: `${skill.progress}%` }}
         ></div>
       </div>
@@ -25,15 +27,15 @@ export default function Skills({ isDarkMode }) {
       id="skills"
       className={`py-24 border-t border-b fade-in-section transition-colors duration-300 ${
         isDarkMode
-          ? "bg-[#171A18] border-[#2D332B]/80"
-          : "bg-neutral-100/40 border-neutral-200/80"
+        ? "bg-[color:var(--color-background)] border-[color:var(--color-border)]"
+        : "bg-neutral-100/40 border-neutral-200/80"
       }`}
     >
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16 space-y-3">
           <h2 className="text-3xl font-extrabold tracking-tight">Skills</h2>
 
-          <p className="text-[#BFC9BF] max-w-xl mx-auto text-sm">
+          <p className="text-[color:var(--color-text-secondary)] max-w-xl mx-auto text-sm">
             Competências técnicas balanceadas entre o desenvolvimento de software
             e a administração de infraestrutura.
           </p>
@@ -41,8 +43,8 @@ export default function Skills({ isDarkMode }) {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h3 className="text-xs font-bold font-mono tracking-wider text-[#BFC9BF] uppercase flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#556B2F]"></span>
+            <h3 className="text-xs font-bold font-mono tracking-wider text-[color:var(--color-text-secondary)] uppercase flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--color-primary)]"></span>
               Desenvolvimento de Software
             </h3>
 
@@ -52,8 +54,8 @@ export default function Skills({ isDarkMode }) {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xs font-bold font-mono tracking-wider text-[#BFC9BF] uppercase flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#556B2F]"></span>
+            <h3 className="text-xs font-bold font-mono tracking-wider text-[color:var(--color-text-secondary)] uppercase flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--color-primary)]"></span>
               SysAdmin & IT Support
             </h3>
 

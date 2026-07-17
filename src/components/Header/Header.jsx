@@ -5,9 +5,36 @@ export default function Header({
   setIsMobileMenuOpen,
   scrollToSection,
 }) {
+
+const theme = isDarkMode
+  ? {
+      header: "bg-[color:var(--color-background)]/80 border-[color:var(--color-border)]/80",
+      text: "text-[color:var(--color-text-secondary)]",
+      hover: "hover:text-[color:var(--color-accent)]",
+      button:
+        "border-neutral-700 text-[color:var(--color-text)] hover:bg-neutral-800/60 hover:text-[color:var(--color-accent)]",
+      toggle:
+        "bg-[color:var(--color-surface)] border-[color:var(--color-border)] hover:bg-[color:var(--color-surface-hover)] text-yellow-500",
+      mobile: "bg-[color:var(--color-background)] border-[color:var(--color-border)]",
+    }
+  : {
+      header: "bg-white/80 border-neutral-200/85",
+      text: "text-neutral-600",
+      hover: "hover:text-neutral-900",
+      button:
+        "border-neutral-300 text-neutral-700 hover:bg-neutral-100",
+      toggle:
+        "bg-white border-neutral-300 hover:bg-neutral-100 text-neutral-600",
+      mobile: "bg-white border-neutral-200",
+    };
+
+
+
+
+
   return (    
 
-    <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-colors duration-300 ${isDarkMode ? 'bg-[#0F1110]/80 border-[#2D332B]/80' : 'bg-white/80 border-neutral-200/85'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-colors duration-300 ${theme.header}`}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           
           {/* Logo Minimalista */}
@@ -19,25 +46,25 @@ export default function Header({
           <nav className="hidden md:flex items-center gap-10">
             <button 
               onClick={() => scrollToSection('experiences')} 
-              className="font-mono text-xs uppercase tracking-[3px] text-[#BFC9BF] hover:text-[#D8C9A3] transition-colors focus:outline-none"
+              className={`font-mono text-xs uppercase tracking-[3px] transition-colors focus:outline-none ${theme.text} ${theme.hover}`}
             >
               experiencia
             </button>
             <button 
               onClick={() => scrollToSection('about')} 
-              className="font-mono text-xs uppercase tracking-[3px] text-[#BFC9BF] hover:text-[#D8C9A3] transition-colors focus:outline-none"
+              className={`font-mono text-xs uppercase tracking-[3px] transition-colors focus:outline-none ${theme.text} ${theme.hover}`}
             >
               about
             </button>
             <button 
               onClick={() => scrollToSection('skills')} 
-              className="font-mono text-xs uppercase tracking-[3px] text-[#BFC9BF] hover:text-[#D8C9A3]transition-colors focus:outline-none"
+              className={`font-mono text-xs uppercase tracking-[3px] transition-colors focus:outline-none ${theme.text} ${theme.hover}`}
             >
               skills
             </button>
             <button 
               onClick={() => scrollToSection('certs')} 
-              className="font-mono text-xs uppercase tracking-[3px] text-[#BFC9BF] hover:text-[#D8C9A3]transition-colors focus:outline-none"
+              className={`font-mono text-xs uppercase tracking-[3px] transition-colors focus:outline-none ${theme.text} ${theme.hover}`}
             >
               certs
             </button>
@@ -47,16 +74,14 @@ export default function Header({
             {/* Botão de Contato - Retangular Seco de Canto Vivo como em image_35e0c9.png */}
             <button 
               onClick={() => scrollToSection('contact')}
-              className={`hidden md:block font-mono text-[11px] tracking-widest px-6 py-2.5 transition-all font-semibold uppercase border ${isDarkMode ? 'border-neutral-700 text-[#ECE7DD] hover:bg-neutral-800/60 hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-700 hover:bg-neutral-100'}`}
-              style={{ borderRadius: '1px' }}
-            >
+              className={`hidden md:block font-mono text-[11px] tracking-widest px-6 py-2.5 transition-all font-semibold uppercase border ${theme.button}`}>    
               Contato
             </button>
 
             {/* Toggle de Tema Light/Dark */}
             <button 
               onClick={() => setIsDarkMode(!isDarkMode)} 
-              className={`p-2 rounded-lg border transition-colors ${isDarkMode ? 'bg-[#171A18] border-[#2D332B] hover:bg-neutral-800 text-yellow-500' : 'bg-white border-neutral-300 hover:bg-neutral-100 text-neutral-600'}`}
+              className={`p-2 rounded-lg border transition-colors ${theme.toggle}`}
               title="Alternar Tema"
             >
               {isDarkMode ? (
@@ -73,7 +98,7 @@ export default function Header({
             {/* Menu responsivo de celular */}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-              className="md:hidden p-2 rounded-lg text-[#BFC9BF] hover:text-[#D8C9A3]"
+              className="md:hidden p-2 rounded-lg text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)]"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? (
@@ -88,7 +113,7 @@ export default function Header({
 
         {/* Menu Dropdown Celular */}
         {isMobileMenuOpen && (
-          <div className={`md:hidden px-6 py-4 flex flex-col space-y-4 border-t transition-all ${isDarkMode ? 'bg-[#0F1110] border-[#2D332B]' : 'bg-white border-neutral-200'}`}>
+          <div className={`md:hidden px-6 py-4 flex flex-col space-y-4 border-t transition-all ${theme.mobile}`}>
             <button onClick={() => scrollToSection('experiences')} className="text-left py-2 font-mono text-xs tracking-wider uppercase">experience</button>
             <button onClick={() => scrollToSection('about')} className="text-left py-2 font-mono text-xs tracking-wider uppercase">about</button>
             <button onClick={() => scrollToSection('skills')} className="text-left py-2 font-mono text-xs tracking-wider uppercase">skills</button>

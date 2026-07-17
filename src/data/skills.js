@@ -16,8 +16,8 @@ const softwareSkills = [
   },
   {
     name: "Python (Automações & Backend)",
-    level: "Médio",
-    progress: 65,
+    level: "Intermediário",
+    progress: 85,
   },
 ];
 
@@ -25,10 +25,10 @@ const infrastructureSkills = [
   {
     name: "Montagem e Manuntenção de Computadores",
     level: "Avançado",
-    progress: 97,
+    progress: 95,
   },
   {
-    name: "Suporte de Redes (IPv4/v6, Switches)",
+    name: "Infraestrutura de Redes (Switches, Firewall)",
     level: "Intermediário",
     progress: 75,
   },

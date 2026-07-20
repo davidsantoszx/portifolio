@@ -84,11 +84,11 @@ export default function App() {
   // =========================================================================
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${
-  isDarkMode ? 'bg-[#2F4638]' : 'bg-[#f7f7f7]'
-} ${
-  isDarkMode ? 'text-[#ECE7DD]' : 'text-neutral-800'
-}`}>
+    <div  className={`min-h-screen font-sans transition-colors duration-300 ${
+    isDarkMode
+      ? "bg-[color:var(--color-page)] text-[color:var(--color-text)]"
+      : "bg-[#f7f7f7] text-neutral-800"
+  }`}>
       <CustomStyles />
 
       <Header

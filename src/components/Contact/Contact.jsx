@@ -2,8 +2,8 @@ export default function Contact({ isDarkMode }) {
     return (
             <section id="contact" className="py-24 max-w-5xl mx-auto px-6 text-center fade-in-section">
         <div className="flex flex-col items-center justify-center space-y-4 mb-8">
-          <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#BFC9BF]">
-            <span className="w-8 h-[1px] bg-[#556B2F]"></span>
+          <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#D5DDE8]">
+            <span className="w-8 h-[1px] bg-[#2D74DA]"></span>
             <span>Contato</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
@@ -22,7 +22,7 @@ export default function Contact({ isDarkMode }) {
             href="mailto:david.flameng0187@gmail.com.br" 
             className={`flex items-center gap-3 px-6 py-4 rounded border font-mono text-[11px] md:text-xs transition-all ${
               isDarkMode 
-                ? 'border-[#2D332B] bg-[#171A18]/40 hover:border-neutral-700 hover:bg-[#171A18]/80 text-[#ECE7DD]' 
+                ? 'border-[#4386E5] bg-[#171A18]/40 hover:border-[#2D74DA] hover:bg-[#171A18]/80 text-[#ECE7DD]' 
                 : 'border-neutral-200 bg-white hover:border-neutral-400 hover:bg-neutral-50 text-neutral-700 shadow-sm'
             }`}
           >
@@ -39,7 +39,7 @@ export default function Contact({ isDarkMode }) {
             rel="noreferrer"
             className={`flex items-center gap-3 px-6 py-4 rounded border font-mono text-[11px] md:text-xs transition-all ${
               isDarkMode 
-                ? 'border-[#2D332B] bg-[#171A18]/40 hover:border-neutral-700 hover:bg-[#171A18]/80 text-[#ECE7DD]' 
+                ? 'border-[#4386E5] bg-[#171A18]/40 hover:border-[#2D74DA] hover:bg-[#171A18]/80 text-[#ECE7DD]' 
                 : 'border-neutral-200 bg-white hover:border-neutral-400 hover:bg-neutral-50 text-neutral-700 shadow-sm'
             }`}
           >
@@ -56,7 +56,7 @@ export default function Contact({ isDarkMode }) {
             rel="noreferrer"
             className={`flex items-center gap-3 px-6 py-4 rounded border font-mono text-[11px] md:text-xs transition-all ${
               isDarkMode 
-                ? 'border-[#2D332B] bg-[#171A18]/40 hover:border-neutral-700 hover:bg-[#171A18]/80 text-[#ECE7DD]' 
+                ? 'border-[#4386E5] bg-[#171A18]/40 hover:border-[#2D74DA] hover:bg-[#171A18]/80 text-[#ECE7DD]' 
                 : 'border-neutral-200 bg-white hover:border-neutral-400 hover:bg-neutral-50 text-neutral-700 shadow-sm'
             }`}
           >

@@ -36,7 +36,10 @@
       title: "TodoList",
       category: "dev",
       tech: ["React", "Vite", "Tailwind CSS", "Context API"],
-      description: "Aplicação rica de gerenciamento pessoal. Conta com sistema de autenticação de usuários, dashboard de produtividade, calendário e um mural interativo de notas adesivas."
+      description: "Aplicação rica de gerenciamento pessoal. Conta com sistema de autenticação de usuários, dashboard de produtividade, calendário e um mural interativo de notas adesivas.",
+      development: true,
+      images: [],
+    
     }
   ];
 

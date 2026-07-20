@@ -2,35 +2,36 @@
 
 :root {
 
-  /* ==========================
-     CORES PRINCIPAIS
-  ========================== */
+/* ==========================
+   CORES PRINCIPAIS
+========================== */
 
-  --color-primary: #556B5D;
-  --color-primary-hover: #617867;
+--color-page: #1C2838; 
 
-  --color-accent: #D8CBB8;
+--color-primary: #2D74DA;
+--color-primary-hover: #4386E5;
 
-  /* ==========================
-     FUNDOS
-  ========================== */
+--color-accent: #D9D2B0;
 
-  --color-background: #111111;
-  --color-surface: #181818;
-  --color-surface-hover: #202020;
+/* ==========================
+   FUNDOS
+========================== */
 
-  /* ==========================
-     TEXTOS
-  ========================== */
+--color-background: #12161D;
+--color-surface: #1A212C;
+--color-surface-hover: #243042;
 
-  --color-text: #F2F2F2;
-  --color-text-secondary: #D8E0D8;
-  --color-text-muted: #A8A8A8;
+/* ==========================
+   TEXTOS
+========================== */
 
-  /* ==========================
-     BORDAS
-  ========================== */
+--color-text: #F2F4F7;
+--color-text-secondary: #D5DDE8;
+--color-text-muted: #A5B1C2;
 
-  --color-border: #2C2C2C;
+/* ==========================
+   BORDAS
+========================== */
 
+--color-border: #344252;
 }

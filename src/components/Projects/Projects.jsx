@@ -15,8 +15,6 @@ export default function Projects({
   const [currentImage, setCurrentImage] = useState(0);
 
     return (
-        
- 
 
 <section id="projects" className={`py-24 border-t border-b fade-in-section transition-colors duration-300 ${isDarkMode ? 'bg-[color:var(--color-background)]  border-[color:var(--border)]/80' : 'bg-neutral-100/40 border-neutral-200/80'}`}>
         <div className="max-w-6xl mx-auto px-6">
@@ -24,7 +22,7 @@ export default function Projects({
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Projetos em Destaque</h2>
               <p className="text-[color:var(--text-secondary)] max-w-lg text-sm">
-                Automações, scripts PowerShell e aplicações completas para fluxos práticos de operação.
+                Projetos focados em desenvolvimento web, automação de processos e soluções para infraestrutura de TI.
               </p>
             </div>
 
@@ -39,14 +37,14 @@ export default function Projects({
               </button>
               <button 
                 onClick={() => setActiveTab('dev')} 
-                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'dev' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[color:var(--surface)]border-[color:var(--border)] text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
+                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'dev' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[color:var(--color-surface)]border-[color:var(--border)] text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
                 style={{ borderRadius: '1px' }}
               >
                 Web Dev
               </button>
               <button 
                 onClick={() => setActiveTab('sysadmin')} 
-                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'sysadmin' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[color:var(--surface)] border-[color:var(--border)]border-[color:var(--border)]text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
+                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'sysadmin' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[color:var(--color-surface)] border-[color:var(--border)]border-[color:var(--border)]text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
                 style={{ borderRadius: '1px' }}
               >
                 Scripts / Automação
@@ -58,18 +56,21 @@ export default function Projects({
             {filteredProjects.map(project => (
               <div 
                 key={project.id}
-                className={`group flex flex-col justify-between p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${isDarkMode ? 'bg-[#0F1110 border-[color:var(--border)]/80 hover:border-[color:var(--primary)]' : 'bg-white border-neutral-200 hover:shadow-lg'}`}
-                style={{ borderRadius: '2px' }}
+                className={`group flex flex-col justify-between p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+  isDarkMode
+    ? 'bg-[color:var(--color-surface)] border-[color:var(--color-border)] hover:border-[color:var(--color-primary)]'
+    : 'bg-white border-neutral-200 hover:shadow-lg'
+}`}
               >
-<div>
+    <div>
 
-{previewProject === project.id ? (
+    {previewProject === project.id ? (
 
     <div className="relative">
 
           <button
               onClick={() => setPreviewProject(null)}
-              className="absolute top-3 right-3 bg-[color:var(--surface)]/90 z-30 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
+              className="absolute top-3 right-3 bg-[color:var(--color-surface)]/90 z-30 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
           >
               <svg
                   className="w-3.5 h-3.5 text-white"
@@ -103,7 +104,7 @@ export default function Projects({
                             : currentImage - 1
                     )
                 }
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-[color:var(--surface)]/80 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-[color:var(--color-surface)]/80 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
                 >
                     <svg
                         className="w-4 h-4 text-white"
@@ -128,7 +129,7 @@ export default function Projects({
                                 : currentImage + 1
                         )
                     }
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-[color:var(--surface)]/80 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-[color:var(--color-surface)]/80 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
                 >
                     <svg
                         className="w-4 h-4 text-white"
@@ -153,13 +154,13 @@ export default function Projects({
 
     </div>
 
-) : (
+    ) : (
 
     <>
 
         <div className="flex justify-between items-center mb-6">
 
-            <span className={`p-2 rounded ${isDarkMode ? 'bg-[color:var(--surface)]' : 'bg-neutral-100'}`}>
+            <span className={`p-2 rounded ${isDarkMode ? 'bg-[color:var(--color-surface)]' : 'bg-neutral-100'}`}>
 
                 {project.category === 'dev' ? (
 
@@ -195,9 +196,9 @@ export default function Projects({
 
     </>
 
-)}
+    )}
 
-</div>
+    </div>
 
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-6">
@@ -208,41 +209,51 @@ export default function Projects({
                     ))}
                   </div>
 
-                  <button
-                      onClick={() => {
-                          setPreviewProject(project.id);
-                          setCurrentImage(0);
-                      }}
-                      className="inline-flex items-center gap-1 text-xs font-semibold hover:gap-2 transition-all"
-                  >
-                      <span>Preview</span>
+                {project.development ? (
 
-                      <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                      >
-                          <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                          />
-                      </svg>
-                  </button>
+                    <span className="inline-flex items-center gap-2 text-xs font-semibold text-yellow-400">
+                        🚧 Em desenvolvimento
+                    </span>
+
+                ) : (
+
+                    <button
+                        onClick={() => {
+                            setPreviewProject(project.id);
+                            setCurrentImage(0);
+                        }}
+                        className="inline-flex items-center gap-1 text-xs font-semibold hover:gap-2 transition-all"
+                    >
+                        <span>Preview</span>
+
+                        <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                            />
+                        </svg>
+                    </button>
+
+                )}
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-{modalProject && (
+    {modalProject && (
 
-<div
+    <div
     className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
     onClick={() => setModalProject(null)}
->
+    >
 
     <div
         className="relative"
@@ -253,7 +264,7 @@ export default function Projects({
 
         <button
             onClick={() => setModalProject(null)}
-            className="absolute top-3 right-3 z-30 bg-[color:var(--surface)] hover:bg-[color:var(--primary)] p-2 rounded-full"
+            className="absolute top-3 right-3 z-30 bg-[color:var(--color-surface)] hover:bg-[color:var(--primary)] p-2 rounded-full"
         >
             <svg
                 className="w-5 h-5 text-white"
@@ -280,7 +291,7 @@ export default function Projects({
                         : currentImage - 1
                 )
             }
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-[color:var(--surface)]/90 hover:bg-[color:var(--primary)] p-3 rounded-full"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-[color:var(--color-surface)]/90 hover:bg-[color:var(--primary)] p-3 rounded-full"
         >
             <svg
                 className="w-6 h-6 text-white"
@@ -307,7 +318,7 @@ export default function Projects({
                         : currentImage + 1
                 )
             }
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-[color:var(--surface)]/90 hover:bg-[color:var(--primary)] p-3 rounded-full"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-[color:var(--color-surface)]/90 hover:bg-[color:var(--primary)] p-3 rounded-full"
         >
             <svg
                 className="w-6 h-6 text-white"
@@ -332,11 +343,11 @@ export default function Projects({
 
     </div>
 
-</div>
+    </div>
 
-)}
+    )}
 
-      </section>
+</section>
 
    );
 }

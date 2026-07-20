@@ -35,3 +35,27 @@
 
 --color-border: #344252;
 }
+
+
+
+
+/* ==========================
+   ANIMAÇÃO SCROLL
+========================== */
+
+@keyframes scrollIndicator {
+
+  0%,
+  100%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(10px);
+  }
+
+}
+
+.animate-scroll{
+  animation: scrollIndicator 2.2s ease-in-out infinite;
+}

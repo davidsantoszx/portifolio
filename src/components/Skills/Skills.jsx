@@ -35,7 +35,9 @@ export default function Skills({ isDarkMode }) {
         <div className="text-center mb-16 space-y-3">
           <h2 className="text-3xl font-extrabold tracking-tight">Skills</h2>
 
-          <p className="text-[color:var(--color-text-secondary)] max-w-xl mx-auto text-sm">
+
+          <p className={`max-w-xl mx-auto text-sm ${isDarkMode ? "text-[color:var(--color-text-secondary)]" : "text-[color:var(--color-background)]" }`}>
+
             Competências técnicas balanceadas entre o desenvolvimento de software
             e a administração de infraestrutura.
           </p>
@@ -43,7 +45,7 @@ export default function Skills({ isDarkMode }) {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h3 className="text-xs font-bold font-mono tracking-wider text-[color:var(--color-text-secondary)] uppercase flex items-center gap-2">
+            <h3 className={`text-xs font-bold font-mono tracking-wider uppercase flex items-center gap-2 ${isDarkMode ? "text-[color:var(--color-text-secondary)]" : "text-[color:var(--color-background)]" }`}>
               <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--color-primary)]"></span>
               Desenvolvimento de Software
             </h3>
@@ -54,7 +56,7 @@ export default function Skills({ isDarkMode }) {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xs font-bold font-mono tracking-wider text-[color:var(--color-text-secondary)] uppercase flex items-center gap-2">
+            <h3 className={`text-xs font-bold font-mono tracking-wider uppercase flex items-center gap-2 ${isDarkMode ? "text-[color:var(--color-text-secondary)]" : "text-[color:var(--color-background)]" }`}>
               <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--color-primary)]"></span>
               SysAdmin & IT Support
             </h3>

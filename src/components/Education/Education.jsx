@@ -14,7 +14,7 @@ export default function Education({ isDarkMode }) {
         <div className="grid md:grid-cols-2 gap-8">
           
           {/* Educação Principal (Ensino Superior) */}
-          <div className={`p-6 border transition-all hover:-translate-y-1 ${isDarkMode ? 'bg-[color:var(--color-surface)] border-[color:var(--border)]' : 'bg-white border-neutral-200'}`} style={{ borderRadius: '2px' }}>
+          <div className="p-6 border transition-all hover:-translate-y-1 border-[color:var(--color-text-muted)] hover:border-[color:var(--color-primary)]">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[color:var(--text-secondary)]">Graduação Ensino Superior</span>
@@ -32,7 +32,7 @@ export default function Education({ isDarkMode }) {
 
           {/* Certificações Livres / Tecnológicas */}
           <div className="space-y-3.5">
-            <div className={`p-4 border flex items-center justify-between hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 ${isDarkMode ? 'bg-[color:var(--color-surface)] border-[color:var(--border)]'    : 'bg-white border-neutral-200'}`}style={{ borderRadius: '2px' }}>
+            <div className="p-4 border flex items-center justify-between hover:-translate-y-1  transition-all duration-300 border-[color:var(--color-text-muted)] hover:border-[color:var(--color-primary)]">
               <div>
                 <h4 className="text-xs md:text-sm font-bold">Certificação ITIL® v4 Foundation</h4>
                 <p className="text-[11px] text-[color:var(--text-secondary)] font-mono mt-0.5">Gerenciamento de Serviços de TI (ITSM) • 20h</p>
@@ -40,7 +40,7 @@ export default function Education({ isDarkMode }) {
               <span className="p-1.5 rounded bg-[color:var(--primary)]/10 text-[color:var(--text-secondary)] font-mono text-[9px]">Udemy</span>
             </div>
 
-           <div className={`p-4 border flex items-center justify-between hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 ${isDarkMode ? 'bg-[color:var(--color-surface)] border-[color:var(--border)]'    : 'bg-white border-neutral-200'}`}style={{ borderRadius: '2px' }}>
+           <div className="p-4 border flex items-center justify-between hover:-translate-y-1  transition-all duration-300 border-[color:var(--color-text-muted)] hover:border-[color:var(--color-primary)]">
               <div>
                 <h4 className="text-xs md:text-sm font-bold">Engenharia de Software</h4>
                 <p className="text-[11px] text-[color:var(--text-secondary)] font-mono mt-0.5">Modelagem de Processos & Metodologias Ágeis • 100h</p>
@@ -48,7 +48,7 @@ export default function Education({ isDarkMode }) {
               <span className="p-1.5 rounded bg-[color:var(--primary)]/10 text-[color:var(--text-secondary)] font-mono text-[9px]">FIAP</span>
             </div>
 
-            <div className={`p-4 border flex items-center justify-between hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 ${isDarkMode ? 'bg-[color:var(--color-surface)] border-[color:var(--border)]'    : 'bg-white border-neutral-200'}`}style={{ borderRadius: '2px' }}>
+            <div className="p-4 border flex items-center justify-between hover:-translate-y-1  transition-all duration-300 border-[color:var(--color-text-muted)] hover:border-[color:var(--color-primary)]">
               <div>
                 <h4 className="text-xs md:text-sm font-bold">Análise de Dados com Python</h4>
                 <p className="text-[11px] text-[color:var(--text-secondary)] font-mono mt-0.5">Pandas, NumPy & Tratamento Estruturado de Dados • 40h</p>
@@ -56,7 +56,7 @@ export default function Education({ isDarkMode }) {
               <span className="p-1.5 rounded bg-[color:var(--primary)]/10 text-[color:var(--text-secondary)] font-mono text-[9px]">Trilha Unopar</span>
             </div>
 
-            <div className={`p-4 border flex items-center justify-between hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 ${isDarkMode ? 'bg-[color:var(--color-surface)] border-[color:var(--border)]'    : 'bg-white border-neutral-200'}`}style={{ borderRadius: '2px' }}>
+            <div className="p-4 border flex items-center justify-between hover:-translate-y-1  transition-all duration-300 border-[color:var(--color-text-muted)] hover:border-[color:var(--color-primary)]">
               <div>
                 <h4 className="text-xs md:text-sm font-bold">Programação em Python</h4>
                 <p className="text-[11px] text-[color:var(--text-secondary)] font-mono mt-0.5">Lógica de Programação & Estruturas de Dados • 18h</p>
@@ -67,7 +67,7 @@ export default function Education({ isDarkMode }) {
 
 
           <div
-            className={`p-4 border flex items-center justify-between hover:-translate-y-1    hover:border-[var(--primary)]  transition-all duration-300  ${isDarkMode  ? 'bg-[color:var(--color-surface)] border-[color:var(--border)]'     : 'bg-white border-neutral-200'}`}style={{ borderRadius: '2px' }}>
+            className="p-4 border flex items-center justify-between hover:-translate-y-1 transition-all duration-300 border-[color:var(--color-text-muted)] hover:border-[color:var(--color-primary)]">
             <div>
               <h4 className="text-xs md:text-sm font-bold">
                 Backend Python Django
@@ -92,3 +92,7 @@ export default function Education({ isDarkMode }) {
 
         );
 }
+
+
+
+/*fazer limpeza de darkmode de baixo para cima ja fiz backend django*/

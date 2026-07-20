@@ -28,27 +28,53 @@ export default function Projects({
 
             {/* Abas Filtros de Categoria */}
             <div className="flex flex-wrap gap-2">
-              <button 
-                onClick={() => setActiveTab('all')} 
-                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'all' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[#171border-[color:var(--border)]A18] text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
-                style={{ borderRadius: '1px' }}
-              >
+            <button
+                onClick={() => setActiveTab("all")}
+                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${
+                activeTab === "all"
+                    ? isDarkMode
+                    ? "bg-[color:var(--color-text)] text-[color:var(--color-background)] border-[color:var(--color-text)]"
+                    : "bg-white text-black border-black"
+                    : isDarkMode
+                    ? "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)] border-[color:var(--color-border)]"
+                    : "text-black border-black hover:bg-neutral-100"
+                }`}
+                style={{ borderRadius: "1px" }}
+            >
                 Todos
-              </button>
-              <button 
-                onClick={() => setActiveTab('dev')} 
-                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'dev' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[color:var(--color-surface)]border-[color:var(--border)] text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
-                style={{ borderRadius: '1px' }}
-              >
+            </button>
+
+            <button
+                onClick={() => setActiveTab("dev")}
+                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${
+                activeTab === "dev"
+                    ? isDarkMode
+                    ? "bg-[color:var(--color-text)] text-[color:var(--color-background)] border-[color:var(--color-text)]"
+                    : "bg-white text-black border-black"
+                    : isDarkMode
+                    ? "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)] border-[color:var(--color-border)]"
+                    : "text-black border-black hover:bg-neutral-100"
+                }`}
+                style={{ borderRadius: "1px" }}
+            >
                 Web Dev
-              </button>
-              <button 
-                onClick={() => setActiveTab('sysadmin')} 
-                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${activeTab === 'sysadmin' ? (isDarkMode ? 'bg-[color:var(--text)] text-[color:var(--background)] border-[color:var(--text)]' : 'bg-[color:var(--color-surface)] border-[color:var(--border)]border-[color:var(--border)]text-white border-neutral-900') : (isDarkMode ? ' text-[color:var(--text-secondary)] hover:text-[#D8C9A3]' : 'border-neutral-300 text-neutral-600 hover:bg-neutral-200')}`}
-                style={{ borderRadius: '1px' }}
-              >
+            </button>
+
+            <button
+                onClick={() => setActiveTab("sysadmin")}
+                className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${
+                activeTab === "sysadmin"
+                    ? isDarkMode
+                    ? "bg-[color:var(--color-text)] text-[color:var(--color-background)] border-[color:var(--color-text)]"
+                    : "bg-white text-black border-black"
+                    : isDarkMode
+                    ? "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)] border-[color:var(--color-border)]"
+                    : "text-black border-black hover:bg-neutral-100"
+                }`}
+                style={{ borderRadius: "1px" }}
+            >
                 Scripts / Automação
-              </button>
+            </button>
             </div>
           </div>
 

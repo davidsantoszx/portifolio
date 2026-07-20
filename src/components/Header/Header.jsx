@@ -35,7 +35,7 @@ const theme = isDarkMode
   return (    
 
     <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-colors duration-300 ${theme.header}`}>
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto px-6 py-1 flex justify-between items-center">
           
           {/* Logo Minimalista */}
           <button onClick={() => scrollToSection('about')} className="font-mono text-sm md:text-base font-extrabold tracking-widest uppercase focus:outline-none">
@@ -48,7 +48,7 @@ const theme = isDarkMode
               onClick={() => scrollToSection('experiences')} 
               className={`font-mono text-xs uppercase tracking-[3px] transition-colors focus:outline-none ${theme.text} ${theme.hover}`}
             >
-              experiencia
+              experience
             </button>
             <button 
               onClick={() => scrollToSection('about')} 

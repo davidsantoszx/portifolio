@@ -16,11 +16,15 @@ export default function Hero({
             David Santos
           </h1>
           
-          <h2 className="text-base md:text-lg font-medium tracking-wide font-mono text-[color:var(--color-text-secondary)]">
+          <h2 className={`text-base md:text-lg font-medium tracking-wide font-mono ${isDarkMode ? "text-[color:var(--color-text-secondary)]" : "text-[color:var(--color-background)]" }`}>
             Full Stack Developer <span className="text-neutral-600">|</span> IT Support Technician <span className="text-neutral-600">|</span> SysAdmin
           </h2>
 
-          <p className="text-sm md:text-base leading-relaxed text-[color:var(--color-text)] text-justify max-w-3xl">
+
+
+
+
+          <p className={`text-sm md:text-base leading-relaxed text-justify max-w-3xl ${isDarkMode ? "text-[color:var(--color-text)]" : "text-[color:var(--color-background)]" }`}>
             Profissional de TI com experiência em infraestrutura, Active Directory, redes e automação de processos. Atualmente atuo na administração de ambientes corporativos, associando essa vivência ao desenvolvimento de aplicações web modernas com React, JavaScript, Tailwind, Node e PostgreSQL, criando soluções modernas e agregando máxima eficiência operacional.
           </p>
 

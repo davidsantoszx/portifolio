@@ -28,6 +28,11 @@ export default function Experience({ experiences }) {
               <span className="text-[11px] font-mono px-3 py-1 rounded border border-neutral-500/10 bg-[color:var(--primary)]/10 text-[color:var(--text-secondary)] w-fit">
                 {exp.period}
               </span>
+
+
+
+
+
             </div>
 
             <h4 className="text-xs md:text-sm font-semibold opacity-70 mb-4 flex flex-wrap items-center gap-2">

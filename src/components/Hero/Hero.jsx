@@ -15,7 +15,8 @@ export default function Hero({
         </div>
 
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-none">
-          David Santos
+          <span>David </span>
+          <span className="text-[#7EC8E3]">Santos</span>
         </h1>
 
         <h2

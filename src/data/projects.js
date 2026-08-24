@@ -45,10 +45,10 @@ const projects = [
       "Desenvolvido com foco em organização financeira pessoal. Permite criar planos salariais customizados com controle preciso de despesas, receitas e gráficos visuais claros.",
 
     images: [
-      `${import.meta.env.BASE_URL}images/projects/salario/1.JPG`,
-      `${import.meta.env.BASE_URL}images/projects/salario/2.JPG`,
-      `${import.meta.env.BASE_URL}images/projects/salario/3.JPG`,
-      `${import.meta.env.BASE_URL}images/projects/salario/4.JPG`,
+      `${import.meta.env.BASE_URL}images/projects/salario/1.png`,
+      `${import.meta.env.BASE_URL}images/projects/salario/2.png`,
+      `${import.meta.env.BASE_URL}images/projects/salario/3.png`,
+      `${import.meta.env.BASE_URL}images/projects/salario/4.png`,
     ],
   },
 ];

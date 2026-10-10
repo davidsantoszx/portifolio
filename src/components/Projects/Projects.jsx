@@ -84,11 +84,17 @@ export default function Projects({
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className={`group flex flex-col justify-between p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
-                isDarkMode
-                  ? "bg-[color:var(--color-surface)] border-[color:var(--color-border)] hover:border-[color:var(--color-primary)]"
-                  : "bg-white border-neutral-200 hover:shadow-lg"
-              }`}
+              className={`float-card ${
+  project.id % 3 === 0
+    ? "float-delay-2"
+    : project.id % 2 === 0
+      ? "float-delay-1"
+      : ""
+} group flex flex-col justify-between p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+  isDarkMode
+    ? "bg-[color:var(--color-surface)] border-[color:var(--color-border)] hover:border-[color:var(--color-primary)]"
+    : "bg-white border-neutral-200 hover:shadow-lg"
+}`}
             >
               <div>
                 {previewProject === project.id ? (

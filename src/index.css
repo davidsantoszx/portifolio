@@ -59,3 +59,106 @@
 .animate-scroll{
   animation: scrollIndicator 2.2s ease-in-out infinite;
 }
+
+
+
+/* ==========================
+   FLUTUAÇÃO SUTIL DOS CARDS
+========================== */
+
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(0.6deg);
+  }
+}
+
+.float-card {
+  animation: cardFloat 5s ease-in-out infinite;
+}
+
+
+.float-card {
+  animation: cardFloat 7s ease-in-out infinite;
+}
+
+.float-delay-1 {
+  animation-delay: -1.7s;
+}
+
+.float-delay-2 {
+  animation-delay: -3.4s;
+}
+
+.float-delay-3 {
+  animation-delay: -5.1s;
+}
+
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .float-card {
+    animation: none;
+  }
+}
+
+
+
+/* Entrada progressiva dos elementos do Hero */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-item {
+  opacity: 0;
+  animation: heroEntrance 0.7s ease-out forwards;
+}
+
+.hero-delay-1 { animation-delay: 0.1s; }
+.hero-delay-2 { animation-delay: 0.25s; }
+.hero-delay-3 { animation-delay: 0.4s; }
+.hero-delay-4 { animation-delay: 0.55s; }
+.hero-delay-5 { animation-delay: 0.7s; }
+
+/* Movimento sutil nas competências */
+@keyframes skillFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.skill-item {
+  animation: skillFloat 5s ease-in-out infinite;
+}
+
+.skill-delay-1 { animation-delay: -1.25s; }
+.skill-delay-2 { animation-delay: -2.5s; }
+.skill-delay-3 { animation-delay: -3.75s; }
+
+/* Respeita a preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .hero-item {
+    opacity: 1;
+    animation: none;
+  }
+
+  .skill-item {
+    animation: none;
+  }
+}

@@ -8,19 +8,18 @@ export default function Hero({
       className="relative min-h-screen max-w-4xl mx-auto px-6 pt-32 pb-24 md:py-40 flex flex-col gap-8 fade-in-section"
     >
       <div className="space-y-6 max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-
-        <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[color:var(--color-border)] text-xs tracking-wider uppercase font-mono bg-[color:var(--color-primary)]/10">
+        <div className="hero-item hero-delay-1 inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[color:var(--color-border)] text-xs tracking-wider uppercase font-mono bg-[color:var(--color-primary)]/10">
           <span className="w-2 h-2 rounded-full bg-[#888888] animate-pulse"></span>
           <span>Disponível para projetos</span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-none">
+        <h1 className="hero-item hero-delay-2 text-4xl md:text-6xl font-extrabold tracking-tight leading-none">
           <span>David </span>
           <span className="text-[#7EC8E3]">Santos</span>
         </h1>
 
         <h2
-          className={`text-base md:text-lg font-medium tracking-wide font-mono ${
+          className={`hero-item hero-delay-3 text-base md:text-lg font-medium tracking-wide font-mono ${
             isDarkMode
               ? "text-[color:var(--color-text-secondary)]"
               : "text-[color:var(--color-background)]"
@@ -32,7 +31,7 @@ export default function Hero({
         </h2>
 
         <p
-          className={`text-sm md:text-base leading-relaxed text-justify max-w-3xl ${
+          className={`hero-item hero-delay-4 text-sm md:text-base leading-relaxed text-justify max-w-3xl ${
             isDarkMode
               ? "text-[color:var(--color-text)]"
               : "text-[color:var(--color-background)]"
@@ -46,9 +45,7 @@ export default function Hero({
           máxima eficiência operacional.
         </p>
 
-        {/* Botões */}
-        <div className="flex flex-wrap gap-4 pt-2">
-
+        <div className="hero-item hero-delay-5 flex flex-wrap gap-4 pt-2">
           <button
             onClick={() => scrollToSection("projects")}
             className={`font-mono text-xs md:text-sm tracking-widest px-8 py-4 transition-all font-bold uppercase border rounded-none ${
@@ -72,34 +69,26 @@ export default function Hero({
           >
             LinkedIn ↗
           </a>
-
         </div>
-
       </div>
 
-{/* Indicador de Scroll */}
+      <div className="absolute left-[-100px] bottom-10 hidden lg:flex flex-col items-center animate-scroll pointer-events-none">
+        <div className="mt-3 w-px h-12 bg-[color:var(--color-border)]"></div>
 
-<div className="absolute left-[-100px] bottom-10 hidden lg:flex flex-col items-center animate-scroll pointer-events-none">
-
-
-  <div className="mt-3 w-px h-12 bg-[color:var(--color-border)]"></div>
-
-  <svg
-    className="w-5 h-5 mt-2 text-[color:var(--color-text-secondary)]"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.6}
-      d="M12 5v14m0 0l-5-5m5 5l5-5"
-    />
-  </svg>
-
-</div>
-
+        <svg
+          className="w-5 h-5 mt-2 text-[color:var(--color-text-secondary)]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.6}
+            d="M12 5v14m0 0l-5-5m5 5l5-5"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

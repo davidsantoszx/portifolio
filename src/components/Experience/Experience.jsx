@@ -13,7 +13,16 @@ export default function Experience({ experiences }) {
 
       <div className="relative border-l border-neutral-500/10 pl-6 md:pl-8 ml-4 space-y-12">
         {experiences.map((exp, idx) => (
-          <div key={idx} className="relative group">
+          <div
+  key={idx}
+  className={`relative group float-card ${
+    idx % 3 === 1
+      ? "float-delay-1"
+      : idx % 3 === 2
+        ? "float-delay-2"
+        : ""
+  }`}
+>
 
             <div
             className="absolute -left-[31px] md:-left-[39px] top-1.5 border-2 border-neutral-500 rounded-full w-4 h-4 flex items-center justify-center bg-[color:var(--background)] group-hover:scale-110 hover:-translate-y-1 hover:border-[color:var(--primary)] transition-all duration-300" >

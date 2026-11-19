@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 export default function Projects({
@@ -11,363 +12,519 @@ export default function Projects({
   const [modalProject, setModalProject] = useState(null);
   const [currentImage, setCurrentImage] = useState(0);
 
+  const projectsContainerRef = useRef(null);
+
+  const scrollProjects = (direction) => {
+    if (!projectsContainerRef.current) return;
+
+    projectsContainerRef.current.scrollBy({
+      left: direction === "right" ? 414 : -414,
+      behavior: "smooth",
+    });
+  };
+
+  const openPreview = (project) => {
+    setPreviewProject(project);
+    setCurrentImage(0);
+  };
+
+  const closePreview = () => {
+    setPreviewProject(null);
+    setCurrentImage(0);
+  };
+
+  const openModal = (project, imageIndex = 0) => {
+    setModalProject(project);
+    setCurrentImage(imageIndex);
+  };
+
+  const closeModal = () => {
+    setModalProject(null);
+    setCurrentImage(0);
+  };
+
+  const nextImage = (project) => {
+    if (!project?.images?.length) return;
+
+    setCurrentImage((current) =>
+      current >= project.images.length - 1 ? 0 : current + 1
+    );
+  };
+
+  const previousImage = (project) => {
+    if (!project?.images?.length) return;
+
+    setCurrentImage((current) =>
+      current <= 0 ? project.images.length - 1 : current - 1
+    );
+  };
+
+  const getProjectImage = (project) => {
+    if (!project?.images?.length) return null;
+
+    return project.images[currentImage % project.images.length];
+  };
+
+  const isDark = isDarkMode;
+
   return (
     <section
       id="projects"
-      className={`py-24 border-t border-b fade-in-section transition-colors duration-300 ${isDarkMode ? "bg-[color:var(--color-background)]  border-[color:var(--border)]/80" : "bg-neutral-100/40 border-neutral-200/80"}`}
+      className="py-24"
+      style={{
+        backgroundColor: "var(--color-background)",
+        color: "var(--color-text)",
+      }}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              Projetos em Destaque
+      <div className="max-w-[1680px] mx-auto px-6">
+        {/* CABEÇALHO */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
+          <div>
+            <span
+              className="text-sm font-semibold tracking-widest uppercase"
+              style={{ color: "var(--color-primary)" }}
+            >
+              Meu trabalho
+            </span>
+
+            <h2 className="text-3xl md:text-4xl font-bold mt-3">
+              Projetos
+              
             </h2>
-            <p className="text-[color:var(--text-secondary)] max-w-lg text-sm">
-              Projetos focados em desenvolvimento web, automação de processos e
-              soluções para infraestrutura de TI.
+
+            <p
+              className="mt-4 max-w-xl"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              Alguns dos projetos que desenvolvi, explorando diferentes
+              tecnologias e soluções.
             </p>
           </div>
 
-          {/* Abas Filtros de Categoria */}
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setActiveTab("all")}
-              className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${
-                activeTab === "all"
-                  ? isDarkMode
-                    ? "bg-[color:var(--color-text)] text-[color:var(--color-background)] border-[color:var(--color-text)]"
-                    : "bg-white text-black border-black"
-                  : isDarkMode
-                    ? "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)] border-[color:var(--color-border)]"
-                    : "text-black border-black hover:bg-neutral-100"
-              }`}
-              style={{ borderRadius: "1px" }}
-            >
-              Todos
-            </button>
-
-            <button
-              onClick={() => setActiveTab("dev")}
-              className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${
-                activeTab === "dev"
-                  ? isDarkMode
-                    ? "bg-[color:var(--color-text)] text-[color:var(--color-background)] border-[color:var(--color-text)]"
-                    : "bg-white text-black border-black"
-                  : isDarkMode
-                    ? "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)] border-[color:var(--color-border)]"
-                    : "text-black border-black hover:bg-neutral-100"
-              }`}
-              style={{ borderRadius: "1px" }}
-            >
-              Web Dev
-            </button>
-
-            <button
-              onClick={() => setActiveTab("sysadmin")}
-              className={`px-4 py-2 text-[10px] font-mono tracking-wider uppercase border transition-all ${
-                activeTab === "sysadmin"
-                  ? isDarkMode
-                    ? "bg-[color:var(--color-text)] text-[color:var(--color-background)] border-[color:var(--color-text)]"
-                    : "bg-white text-black border-black"
-                  : isDarkMode
-                    ? "text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-accent)] border-[color:var(--color-border)]"
-                    : "text-black border-black hover:bg-neutral-100"
-              }`}
-              style={{ borderRadius: "1px" }}
-            >
-              Scripts / Automação
-            </button>
+          {/* FILTROS */}
+          <div className="flex flex-wrap gap-3">
+            {[
+              { label: "Todos", value: "all" },
+              { label: "Web Dev", value: "dev" },
+              { label: "Scripts / Automação", value: "sysadmin" },
+            ].map((filter) => (
+              <button
+                key={filter.value}
+                onClick={() => setActiveTab(filter.value)}
+                className="px-5 py-2.5 rounded-lg text-sm font-medium border transition-all duration-300"
+                style={{
+                  backgroundColor:
+                    activeTab === filter.value
+                      ? "var(--color-primary)"
+                      : "var(--color-surface)",
+                  color:
+                    activeTab === filter.value
+                      ? "#ffffff"
+                      : "var(--color-text-secondary)",
+                  borderColor:
+                    activeTab === filter.value
+                      ? "var(--color-primary)"
+                      : "var(--color-border)",
+                }}
+              >
+                {filter.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className={`float-card ${
-  project.id % 3 === 0
-    ? "float-delay-2"
-    : project.id % 2 === 0
-      ? "float-delay-1"
-      : ""
-} group flex flex-col justify-between p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
-  isDarkMode
-    ? "bg-[color:var(--color-surface)] border-[color:var(--color-border)] hover:border-[color:var(--color-primary)]"
-    : "bg-white border-neutral-200 hover:shadow-lg"
-}`}
+        {/* CARROSSEL */}
+        <div className="relative">
+          {/* SETA ESQUERDA */}
+          <button
+            type="button"
+            onClick={() => scrollProjects("left")}
+            aria-label="Projetos anteriores"
+            className="absolute left-[-18px] top-1/2 -translate-y-1/2 z-20
+              w-11 h-11 rounded-full flex items-center justify-center
+              border shadow-lg transition-all duration-300
+              hover:scale-110"
+            style={{
+              backgroundColor: "var(--color-surface)",
+              borderColor: "var(--color-border)",
+              color: "var(--color-text)",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <div>
-                {previewProject === project.id ? (
-                  <div className="relative">
-                    <button
-                      onClick={() => setPreviewProject(null)}
-                      className="absolute top-3 right-3 bg-[color:var(--color-surface)]/90 z-30 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* ÁREA DE ROLAGEM */}
+          <div
+            ref={projectsContainerRef}
+            className="projects-carousel flex gap-6 overflow-x-auto scroll-smooth pb-5"
+          >
+            {filteredProjects.map((project) => {
+              const isInDevelopment =
+                project.inDevelopment || !project.images?.length;
+
+              return (
+                <article
+                  key={project.id}
+                  className="group flex-shrink-0 w-[390px] min-w-[390px]
+                    flex flex-col justify-between p-6 border
+                    transition-all duration-300 hover:-translate-y-1
+                    hover:shadow-2xl rounded-xl"
+                  style={{
+                    backgroundColor: "var(--color-surface)",
+                    borderColor: "var(--color-border)",
+                  }}
+                >
+                  <div>
+                    {/* IMAGEM / PREVIEW */}
+                    <div
+                      className="relative w-full h-[210px] rounded-lg overflow-hidden
+                        mb-6 flex items-center justify-center"
+                      style={{
+                        backgroundColor: isDark
+                          ? "#101720"
+                          : "var(--color-background)",
+                        border: "1px solid var(--color-border)",
+                      }}
                     >
-                      <svg
-                        className="w-3.5 h-3.5 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-
-                    <img
-                      src={project.images[currentImage]}
-                      alt={project.title}
-                      onClick={() => setModalProject(project)}
-                      className="w-full h-52 object-cover rounded cursor-pointer transition-all duration-300 hover:opacity-90"
-                    />
-
-                    <div className="flex justify-between mt-3">
-                      <button
-                        onClick={() =>
-                          setCurrentImage(
-                            currentImage === 0
-                              ? project.images.length - 1
-                              : currentImage - 1,
-                          )
-                        }
-                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-[color:var(--color-surface)]/80 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
-                      >
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 19l-7-7 7-7"
-                          />
-                        </svg>
-                      </button>
-
-                      <button
-                        onClick={() =>
-                          setCurrentImage(
-                            currentImage === project.images.length - 1
-                              ? 0
-                              : currentImage + 1,
-                          )
-                        }
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-[color:var(--color-surface)]/80 hover:bg-[color:var(--primary)] transition p-1.5 rounded-full"
-                      >
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <div className="flex justify-between items-center mb-6">
-                      <span
-                        className={`p-2 rounded ${isDarkMode ? "bg-[color:var(--color-surface)]" : "bg-neutral-100"}`}
-                      >
-                        {project.category === "dev" ? (
+                      {isInDevelopment ? (
+                        <div className="flex flex-col items-center gap-3 text-center px-4">
                           <svg
-                            className="w-4 h-4 text-[color:var(--text-secondary)]"
-                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="38"
+                            height="38"
                             viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                            />
-                          </svg>
-                        ) : (
-                          <svg
-                            className="w-4 h-4 text-[color:var(--text-secondary)]"
                             fill="none"
-                            viewBox="0 0 24 24"
                             stroke="currentColor"
+                            strokeWidth="1.5"
+                            className="opacity-60"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10"
+                            <rect
+                              x="3"
+                              y="3"
+                              width="18"
+                              height="18"
+                              rx="3"
                             />
+                            <path d="M8 12h8M12 8v8" />
                           </svg>
-                        )}
-                      </span>
 
-                      <span className="text-[9px] tracking-wider uppercase font-mono text-neutral-500">
-                        {project.category === "dev"
-                          ? "Web App"
-                          : "PowerShell Script"}
-                      </span>
+                          <span
+                            className="text-sm font-medium"
+                            style={{
+                              color: "var(--color-text-secondary)",
+                            }}
+                          >
+                            Em desenvolvimento
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <img
+                            src={project.images[0]}
+                            alt={`Preview do projeto ${project.title}`}
+                            className="w-full h-full object-cover
+                              transition-transform duration-500
+                              group-hover:scale-105"
+                          />
+
+                          <button
+                            type="button"
+                            onClick={() => openPreview(project)}
+                            className="absolute inset-0 bg-black/50 opacity-0
+                              group-hover:opacity-100 transition-opacity
+                              duration-300 flex items-center justify-center
+                              text-white font-medium"
+                          >
+                            Visualizar projeto
+                          </button>
+                        </>
+                      )}
                     </div>
 
-                    <h3 className="text-base font-bold mb-3 transition-colors duration-300 group-hover:text-[#D8C9A3]">
-                      {project.title}
-                    </h3>
+                    {/* TÍTULO E DESTAQUE */}
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <h3 className="text-xl font-bold">
+                        {project.title}
+                      </h3>
 
-                    <p className="text-xs md:text-sm text-[color:var(--text-secondary)] leading-relaxed mb-6">
+                      {project.featured && (
+                        <span
+                          className="text-xs font-semibold px-3 py-1
+                            rounded-full whitespace-nowrap"
+                          style={{
+                            backgroundColor: "var(--color-primary)",
+                            color: "#ffffff",
+                          }}
+                        >
+                          Destaque
+                        </span>
+                      )}
+                    </div>
+
+                    {/* DESCRIÇÃO */}
+                    <p
+                      className="text-sm leading-relaxed mb-5"
+                      style={{
+                        color: "var(--color-text-secondary)",
+                      }}
+                    >
                       {project.description}
                     </p>
+
+                    {/* TECNOLOGIAS */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tech?.map((technology) => (
+                        <span
+                          key={technology}
+                          className="text-xs px-3 py-1.5 rounded-md border"
+                          style={{
+                            backgroundColor: "var(--color-background)",
+                            borderColor: "var(--color-border)",
+                            color: "var(--color-text-secondary)",
+                          }}
+                        >
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* AÇÕES */}
+                  <div
+                    className="flex items-center justify-between pt-4 border-t"
+                    style={{ borderColor: "var(--color-border)" }}
+                  >
+                    {isInDevelopment ? (
+                      <span
+                        className="text-sm font-medium"
+                        style={{ color: "var(--color-text-muted)" }}
+                      >
+                        Em desenvolvimento
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => openPreview(project)}
+                        className="text-sm font-semibold transition-colors
+                          hover:opacity-75"
+                        style={{ color: "var(--color-primary)" }}
+                      >
+                        Ver imagens
+                      </button>
+                    )}
+
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium transition-opacity
+                          hover:opacity-70"
+                        style={{ color: "var(--color-text-secondary)" }}
+                      >
+                        GitHub ↗
+                      </a>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* SETA DIREITA */}
+          <button
+            type="button"
+            onClick={() => scrollProjects("right")}
+            aria-label="Próximos projetos"
+            className="absolute right-[-18px] top-1/2 -translate-y-1/2 z-20
+              w-11 h-11 rounded-full flex items-center justify-center
+              border shadow-lg transition-all duration-300
+              hover:scale-110"
+            style={{
+              backgroundColor: "var(--color-surface)",
+              borderColor: "var(--color-border)",
+              color: "var(--color-text)",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* PREVIEW DAS IMAGENS */}
+      {previewProject &&
+        !previewProject.inDevelopment &&
+        previewProject.images?.length > 0 && (
+          <div
+            className="fixed inset-0 z-[100] bg-black/90
+              flex items-center justify-center p-4"
+            onClick={closePreview}
+          >
+            <div
+              className="relative w-full max-w-5xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={closePreview}
+                aria-label="Fechar preview"
+                className="absolute -top-12 right-0 text-white
+                  hover:opacity-70 transition-opacity"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="relative flex items-center justify-center">
+                <img
+                  src={getProjectImage(previewProject)}
+                  alt={`Imagem ${currentImage + 1} de ${previewProject.title}`}
+                  className="max-h-[75vh] max-w-full object-contain rounded-lg"
+                />
+
+                {previewProject.images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => previousImage(previewProject)}
+                      aria-label="Imagem anterior"
+                      className="absolute left-3 top-1/2 -translate-y-1/2
+                        w-11 h-11 rounded-full bg-black/60 text-white
+                        flex items-center justify-center hover:bg-black/80"
+                    >
+                      <span className="text-2xl">‹</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => nextImage(previewProject)}
+                      aria-label="Próxima imagem"
+                      className="absolute right-3 top-1/2 -translate-y-1/2
+                        w-11 h-11 rounded-full bg-black/60 text-white
+                        flex items-center justify-center hover:bg-black/80"
+                    >
+                      <span className="text-2xl">›</span>
+                    </button>
                   </>
                 )}
               </div>
 
-              <div>
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tech.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[9px] font-mono px-2 py-0.5 rounded transition-all duration-300 hover:scale-105 bg-[color:var(--primary)]/10 border border-neutral-500/10 text-[color:var(--text-secondary)]"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+              <p className="text-center text-white/80 text-sm mt-4">
+                {previewProject.title} — {currentImage + 1} /{" "}
+                {previewProject.images.length}
+              </p>
 
-                <button
-                  onClick={() => {
-                    setPreviewProject(project.id);
-                    setCurrentImage(0);
-                  }}
-                  className="inline-flex items-center gap-1 text-xs font-semibold hover:gap-2 transition-all"
-                >
-                  <span>Preview</span>
-
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => openModal(previewProject, currentImage)}
+                className="block mx-auto mt-4 text-sm text-white
+                  underline underline-offset-4 hover:opacity-70"
+              >
+                Ampliar imagem
+              </button>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        )}
 
-     {modalProject &&
-  createPortal(
-    <div
-      className="fixed inset-0 w-screen h-screen bg-black/95 backdrop-blur-sm z-[99999] flex items-center justify-center"
-      onClick={() => setModalProject(null)}
-    >
-      {/* Área da imagem */}
-      <div
-        className="relative max-w-[92vw] max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-
-        {/* Imagem */}
-        <img
-          src={modalProject.images[currentImage]}
-          alt={modalProject.title}
-          className="block max-w-[92vw] max-h-[90vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
-        />
-
-        {/* X — preso à borda da imagem */}
-        <button
-          onClick={() => setModalProject(null)}
-          className="absolute top-3 right-3 z-50 bg-black/75 hover:bg-[color:var(--color-primary)] p-2 rounded-full transition-all duration-200"
-        >
-          <svg
-            className="w-5 h-5 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      {/* MODAL DE IMAGEM AMPLIADA */}
+      {modalProject &&
+        modalProject.images?.length > 0 &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[110] bg-black/95
+              flex items-center justify-center p-4"
+            onClick={closeModal}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+            <button
+              type="button"
+              onClick={closeModal}
+              aria-label="Fechar imagem"
+              className="absolute top-6 right-6 text-white
+                hover:opacity-70 transition-opacity"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
 
-        {/* Seta esquerda — na borda da imagem */}
-        <button
-          onClick={() =>
-            setCurrentImage(
-              currentImage === 0
-                ? modalProject.images.length - 1
-                : currentImage - 1
-            )
-          }
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-50 bg-black/75 hover:bg-[color:var(--color-primary)] p-2.5 rounded-full transition-all duration-200"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
+            <div
+              className="relative flex items-center justify-center w-full h-full"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => previousImage(modalProject)}
+                aria-label="Imagem anterior"
+                className="absolute left-2 md:left-8 text-white
+                  text-5xl hover:opacity-70"
+              >
+                ‹
+              </button>
 
-        {/* Seta direita — na borda da imagem */}
-        <button
-          onClick={() =>
-            setCurrentImage(
-              currentImage === modalProject.images.length - 1
-                ? 0
-                : currentImage + 1
-            )
-          }
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-50 bg-black/75 hover:bg-[color:var(--color-primary)] p-2.5 rounded-full transition-all duration-200"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+              <img
+                src={getProjectImage(modalProject)}
+                alt={`Imagem ampliada de ${modalProject.title}`}
+                className="max-w-[85vw] max-h-[85vh] object-contain"
+              />
 
-      </div>
-    </div>,
-    document.body
-  )}
+              <button
+                type="button"
+                onClick={() => nextImage(modalProject)}
+                aria-label="Próxima imagem"
+                className="absolute right-2 md:right-8 text-white
+                  text-5xl hover:opacity-70"
+              >
+                ›
+              </button>
+
+              <span className="absolute bottom-5 text-white/80 text-sm">
+                {currentImage + 1} / {modalProject.images.length}
+              </span>
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

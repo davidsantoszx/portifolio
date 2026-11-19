@@ -162,3 +162,13 @@
     animation: none;
   }
 }
+
+
+.projects-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projects-carousel::-webkit-scrollbar {
+  display: none;
+}
